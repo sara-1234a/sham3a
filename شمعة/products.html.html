@@ -3,119 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تصفح المنتجات - متجر شَمعة</title>
+    <title>تصفح المنتجات - متجر شمعة</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f8f4ec;
             margin: 0;
             padding: 0;
-            background-color: #f8f4ec;
         }
+
         header {
+            text-align: center;
+            padding: 20px;
             background-color: #c5a880;
             color: white;
-            text-align: center;
-            padding: 10px 0;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
+
+        section {
             padding: 20px;
         }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
         .product {
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #fff;
+            padding: 10px;
             text-align: center;
+            background-color: white;
+            width: 200px;
         }
+
         .product img {
-            max-width: 100%;
+            width: 150px;
             height: auto;
-            border-radius: 5px;
+            margin-bottom: 10px;
         }
+
         .product h3 {
-            font-size: 20px;
-            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
         }
+
         .product p {
             font-size: 16px;
-            margin: 10px 0;
             color: #555;
+            margin: 5px 0;
         }
+
         .product button {
             background-color: #c5a880;
             color: white;
+            padding: 10px;
             border: none;
-            padding: 10px 20px;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .product button:hover {
             background-color: #a38662;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #c5a880;
+            color: white;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>تصفح المنتجات</h1>
+        <body>
+            <header>
+                <h1>تسجيل الطلب</h1>
+                <p>املأ البيانات المطلوبة لتسجيل الطلب</p>
+            </header>
+        
+            <section>
+                <div class="container">
+                    <form id="orderForm">
+                        <!-- بيانات تسجيل الدخول -->
+                        <div class="form-group">
+                            <label for="name">الاسم:</label>
+                            <input type="text" id="name" placeholder="أدخل اسمك" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف:</label>
+                            <input type="text" id="phone" placeholder="أدخل رقم هاتفك" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="region">المنطقة:</label>
+                            <input type="text" id="region" placeholder="أدخل منطقتك" required>
+                        </div>
     </header>
-    <div class="container">
-        <!-- المنتج الأول -->
-        <div class="product">
-            <img src="C:\Users\PERSONAL\Desktop\شمعة\cylinder.png.jpeg" alt="شمعة أسطوانية">
-            <h3>شمعة أسطوانية</h3>
-            <p>السعر: 10 ريال</p>
-            <button onclick="orderProduct('شمعة أسطوانية', 10)">اطلب الآن</button>
-        </div>
-        <!-- المنتج الثاني -->
-        <div class="product">
-            <img src="C:\Users\PERSONAL\Desktop\شمعة\moon.png.jpeg" alt="شمعة على شكل قمر">
-            <h3>شمعة على شكل قمر</h3>
-            <p>السعر: 15 ريال</p>
-            <button onclick="orderProduct('شمعة على شكل قمر', 15)">اطلب الآن</button>
-        </div>
-        <!-- المنتج الثالث -->
-        <div class="product">
-            <img src="C:\Users\PERSONAL\Desktop\شمعة\shell.png.jpeg" alt="شمعة على شكل صدفة">
-            <h3>شمعة على شكل صدفة</h3>
-            <p>السعر: 20 ريال</p>
-            <button onclick="orderProduct('شمعة على شكل صدفة', 20)">اطلب الآن</button>
-        </div>
+
+    <section>
+        <div class="container">
+            <!-- الشمعة الأولى -->
+            <div class="product">
+                <img src="cylinder.png.jpeg" alt="شمعة أسطوانية">
+                <h3>شمعة أسطوانية</h3>
+                <p>السعر: 10 ريال</p>
+                <button onclick="orderProduct('شمعة أسطوانية', 10)">اطلب الآن</button>
+            </div>
+
+            <!-- الشمعة الثانية -->
+            <div class="product">
+                <img src="moon.png" alt="شمعة على شكل قمر">
+                <h3>شمعة على شكل قمر</h3>
+                <p>السعر: 15 ريال</p>
+                <button onclick="orderProduct('شمعة على شكل قمر', 15)">اطلب الآن</button>
+            </div>
+
+            <!-- الشمعة الثالثة -->
+            <div class="product">
+                <img src="shell.png.jpeg" alt="شمعة على شكل صدفه">
+                <h3>شمعة على شكل صدفه</h3>
+                <p>السعر: 20 ريال</p>
+                <button onclick="orderProduct('شمعة على شكل صدفه', 20)">اطلب الآن</button>
+            </div>
+
+            <!-- الشمعة الرابعة -->
+            <div class="product">
+                <img src="cylinder.png.jpeg.jpeg" alt="شمعة ملتوية">
+                <h3>شمعة ملتوية</h3>
+                <p>السعر: 25 ريال</p>
+                <button onclick="orderProduct('شمعة ملتوية', 25)">اطلب الآن</button>
+            </div>
         <p id="responseMessage" style="color: green; text-align: center; margin-top: 20px;"></p>
-    </div>
+        
+    </section>
+    <footer></footer>
+<p>
+            أرسل الإيصال هنا حتى يتم تثبيت الطلب :
+            <a href="https://www.instagram.com/sham3a.art" target="_blank" style="color: rgb(62, 35, 5); text-decoration: underline;">@sham3a.art</a>
+        </p>
+    <footer>
+        <p>&copy; 2025 متجر شمعة. جميع الحقوق محفوظة.</p>
+    </footer>
+
     <script>
         function orderProduct(item, price) {
-            // إنشاء طلب JSON
+            // إنشاء طلب
             const order = {
                 item: item,
-                price: price,
-                quantity: 1 // الكمية الافتراضية
+                price: price
             };
 
             // إرسال الطلب إلى الخادم
             fetch("http://localhost:3000/api/orders", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(order),
+                body: JSON.stringify(order)
             })
-                .then((response) => {
-                    if (response.ok) {
-                        document.getElementById("responseMessage").innerText = "تم إرسال الطلب بنجاح!";
-                    } else {
-                        document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById("responseMessage").innerText = "تم إرسال الطلب بنجاح!";
+                } else {
                     document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
-                });
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
+            });
         }
+        let selectedProduct = ''; // لتتبع المنتج المحدد
+
+function orderProduct(item, price) {
+    selectedProduct = item; // حفظ المنتج المحدد
+
+    // إرسال الطلب
+    const order = { item: item, price: price };
+
+    fetch("http://localhost:3000/api/orders", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(order)
+    })
+    .then(response => {
+        if (response.ok) {
+            document.getElementById("responseMessage").innerText = "تم إرسال الطلب بنجاح! الرجاء إرفاق إيصال التحويل.";
+        } else {
+            document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
+    });
+}
+
     </script>
 </body>
 </html>
