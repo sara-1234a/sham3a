@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الطلب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f4ec;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #c5a880;
+            color: white;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        select, input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #c5a880;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a38662;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>تسجيل الطلب</h1>
+        <p>املأ البيانات المطلوبة لتسجيل الطلب</p>
+    </header>
+
+    <section>
+        <div class="container">
+            <form id="orderForm">
+                <!-- بيانات تسجيل الدخول -->
+                <div class="form-group">
+                    <label for="name">الاسم:</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف:</label>
+                    <input type="text" id="phone" placeholder="أدخل رقم هاتفك" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="region">المنطقة:</label>
+                    <input type="text" id="region" placeholder="أدخل منطقتك" required>
+                </div>
+
+                <!-- بيانات الشمعة -->
+                <div class="form-group">
+                    <label for="color">اختر اللون:</label>
+                    <select id="color">
+                        <option value="أبيض">أبيض</option>
+                        <option value="أحمر">أحمر</option>
+                        <option value="أزرق">أزرق</option>
+                        <option value="بنفسجي">بنفسجي</option>
+                        <option value="أصفر">أصفر</option>
+                        <option value="برتقالي">برتقالي</option>
+                        <option value="وردي">وردي</option>
+                        <option value="كحلي">كحلي</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="scent">اختر الرائحة:</label>
+                    <select id="scent">
+                        <option value="لافندر">لافندر</option>
+                        <option value="زهرة الياسمين">زهرة الياسمين</option>
+                        <option value="ليمون">ليمون</option>
+                        <option value="زهرة الزنبق">زهرة الزنبق</option>
+                        <option value="الساكورا">الساكورا</option>
+                        <option value="المحيط">المحيط</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="shape">اختر القالب:</label>
+                    <select id="shape">
+                        <option value="اسطواني">اسطواني</option>
+                        <option value="ملتوية">ملتوية</option>
+                        <option value="القمر">القمر</option>
+                        <option value="صدفه">صدفه</option>
+                        
+                    </select>
+                </div>
+                 <div class="form-group">
+                        <label for="customText">كتابة على الشمعة (اختياري):</label>
+                        <input type="text" id="customText" placeholder="أدخل نصك" />
+                        <p id="textMessage"></p>
+                 </div>
+                <button type="submit">تأكيد الطلب</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("orderForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const region = document.getElementById("region").value;
+            const color = document.getElementById("color").value;
+            const scent = document.getElementById("scent").value;
+            const shape = document.getElementById("shape").value;
+            const customText =
+            document.getElementById("customText").value;
+            const receipt = document.getElementById("receipt").files[0];
+
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("phone", phone);
+            formData.append("region", region);
+            formData.append("color", color);
+            formData.append("scent", scent);
+            formData.append("shape", shape);
+            formData.append("receipt", receipt);
+
+            fetch("http://localhost:3000/api/orders", {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert("تم إرسال الطلب بنجاح!");
+                        document.getElementById("orderForm").reset();
+                    } else {
+                        alert("حدث خطأ أثناء إرسال الطلب.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("تعذر الاتصال بالخادم.");
+                });
+        });
+    </script>
+        <script>
+            document.getElementById("customText").addEventListener("input", function () {
+                const customText = this.value;
+                const messageElement = document.getElementById("textMessage");
+        
+                // التحقق من الشرط: النص باللغة الإنجليزية ولا يزيد عن 5 حروف
+                const regex = /^[a-zA-Z]{1,5}$/;
+                if (regex.test(customText)) {
+                    messageElement.style.color = "green";
+                    messageElement.innerText = "النص صالح!";
+                } else {
+                    messageElement.style.color = "red";
+                    messageElement.innerText = "النص يجب أن يكون باللغة الإنجليزية وأقل من 5 حروف!";
+                }
+            });
+        </script>
+        <footer>
+            <p>
+                أرسل الإيصال هنا ليتم تثبيت الطلب :
+                <a href="https://www.instagram.com/sham3a.art" target="_blank" style="color: rgb(62, 35, 5); text-decoration: none;">@sham3a.art</a>
+            </p>
+        </footer>
+</body>
+</html>
