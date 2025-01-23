@@ -146,8 +146,6 @@
             const shape = document.getElementById("shape").value;
             const customText =
             document.getElementById("customText").value;
-            const receipt = document.getElementById("receipt").files[0];
-
             const formData = new FormData();
             formData.append("name", name);
             formData.append("phone", phone);
@@ -155,8 +153,6 @@
             formData.append("color", color);
             formData.append("scent", scent);
             formData.append("shape", shape);
-            formData.append("receipt", receipt);
-
             fetch("http://localhost:3000/api/orders", {
                 method: "POST",
                 body: formData,
@@ -173,6 +169,7 @@
                     console.error("Error:", error);
                     alert("تعذر الاتصال بالخادم.");
                 });
+        });
     </script>
         <script>
             document.getElementById("customText").addEventListener("input", function () {
@@ -189,25 +186,6 @@
                     messageElement.innerText = "النص يجب أن يكون باللغة الإنجليزية وأقل من 5 حروف!";
                 }
             });
-                    // إرسال الطلب إلى الخادم
-                    fetch("http://localhost:3000/api/orders", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(order)
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById("responseMessage").innerText = "تم إرسال الطلب بنجاح!";
-                } else {
-                    document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
-            });
         </script>
         <footer>
             <p>
@@ -215,38 +193,5 @@
                 <a href="https://www.instagram.com/sham3a.art" target="_blank" style="color: rgb(62, 35, 5); text-decoration: none;">@sham3a.art</a>
             </p>
         </footer>
-        
 </body>
 </html>
-
-                <div class="form-group">
-                    <label for="scent">اختر الرائحة:</label>
-                    <select id="scent">
-                        <option value="لافندر">لافندر</option>
-                        <option value="زهرة الياسمين">زهرة الياسمين</option>
-                        <option value="ليمون">ليمون</option>
-                        <option value="زهرة الزنبق">زهرة الزنبق</option>
-                        <option value="الساكورا">الساكورا</option>
-                        <option value="المحيط">المحيط</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="shape">اختر القالب:</label>
-                    <select id="shape">
-                        <option value="اسطواني">اسطواني</option>
-                        <option value="ملتوية">ملتوية</option>
-                        <option value="القمر">القمر</option>
-                        <option value="صدفه">صدفه</option>
-                        
-                    </select>
-                </div>
-                 <div class="form-group">
-                        <label for="customText">كتابة على الشمعة (اختياري):</label>
-                        <input type="text" id="customText" placeholder="أدخل نصك" />
-                        <p id="textMessage"></p>
-                 </div>
-                <button type="submit">تأكيد الطلب</button>
-            </form>
-        </div>
-    </section>
