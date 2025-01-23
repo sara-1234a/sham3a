@@ -173,19 +173,6 @@
                     console.error("Error:", error);
                     alert("تعذر الاتصال بالخادم.");
                 });
-        });
-            // إعداد البريد الإلكتروني
-    const mailOptions = {
-        from: 'sham3a.art@gmail.com', // بريد المرسل
-        to: 'sham3a.art@gmail.com',   // بريدك الإلكتروني (لإرسال الطلبات إليه)
-        subject: 'طلب جديد من متجر شمعة',
-        text: `تفاصيل الطلب: 
-        المنتج: ${order.item}
-        السعر: ${order.price}
-        الاسم: ${order.name}
-        الهاتف: ${order.phone}
-        المنطقة: ${order.region}`
-    };
     </script>
         <script>
             document.getElementById("customText").addEventListener("input", function () {
