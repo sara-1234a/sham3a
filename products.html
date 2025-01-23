@@ -208,19 +208,6 @@ function orderProduct(item, price) {
         console.error("Error:", error);
         document.getElementById("responseMessage").innerText = "حدث خطأ أثناء إرسال الطلب.";
     });
-}
-    // إعداد البريد الإلكتروني
-    const mailOptions = {
-        from: 'sham3a.art@gmail.com', // بريد المرسل
-        to: 'sham3a.art@gmail.com',   // بريدك الإلكتروني (لإرسال الطلبات إليه)
-        subject: 'طلب جديد من متجر شمعة',
-        text: `تفاصيل الطلب: 
-        المنتج: ${order.item}
-        السعر: ${order.price}
-        الاسم: ${order.name}
-        الهاتف: ${order.phone}
-        المنطقة: ${order.region}`
-    };
     </script>
 </body>
 </html>
