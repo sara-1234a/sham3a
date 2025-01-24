@@ -166,7 +166,10 @@
             formData.append("shape", shape);
             fetch("http://localhost:3000/api/orders", {
                 method: "POST",
-                body: formData,
+                body: JSON.stringify(orderData),
+                headers: {
+                    "content-type": "application/json"
+                }
             })
                 .then((response) => {
                     if (response.ok) {
